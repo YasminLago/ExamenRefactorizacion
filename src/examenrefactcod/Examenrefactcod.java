@@ -1,6 +1,9 @@
 package examenrefactcod;
 //Yasmin
 
+import java.util.Scanner;
+
+
 public class Examenrefactcod {
 
     /**
@@ -16,17 +19,10 @@ public class Examenrefactcod {
         int numDigitos = 3;
         int nDigitos = 0;
         if (numDigitos <= 0) {
-            System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
+            introduceNumDigitos();
         }
         for (int comparaNum = 1; comparaNum <= 99999; comparaNum++) {
-            int aux = comparaNum;
-
-            int contador = 0;
-
-            while (aux != 0) {
-                aux = aux / 10;
-                contador++;
-            }
+            int contador = contadorNum(comparaNum);
             nDigitos = contador;
 
             if (nDigitos == numDigitos) {
@@ -43,15 +39,7 @@ public class Examenrefactcod {
                             k--;
                         }
 
-                        while (i1 <= k) {
-                            if (comparaNum % i1 == 0) {
-                                contador1++;
-                            }
-                            i1 += 2;
-                            if (contador1 == 2) {
-                                i1 = k + 1;
-                            }
-                        }
+                        contador1 = divisiones(i1, k, comparaNum, contador1);
 
                         if (contador1 == 1) {
                             esPrimo = true;
@@ -64,6 +52,36 @@ public class Examenrefactcod {
                 }
             }
         }
+    }
+
+    public static int divisiones(int i1, int k, int comparaNum, int contador1) {
+        while (i1 <= k) {
+            if (comparaNum % i1 == 0) {
+                contador1++;
+            }
+            i1 += 2;
+            if (contador1 == 2) {
+                i1 = k + 1;
+            }
+        }
+        return contador1;
+    }
+
+    public static int contadorNum(int comparaNum) {
+        int aux = comparaNum;
+        int contador = 0;
+        while (aux != 0) {
+            aux = aux / 10;
+            contador++;
+        }
+        return contador;
+    }
+
+    public static int introduceNumDigitos() {
+        int digitos;
+        Scanner introduce=new Scanner(System.in);
+        System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
+        return digitos=introduce.nextInt();
     }
 
 }
