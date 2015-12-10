@@ -10,16 +10,16 @@ public class Examenrefactcod {
     //LIstar los numeros según el numero de digitos indicado
     //Considero solo hasta numeros menores a 100000 (5 digitos), 
     //por el hecho de k buscar numeros primos a partir de 6 digitos, el proceso se hace muy lento.
-    public static boolean p = false;
+    public static boolean esPrimo = false;
 
     public static void main(String arg[]) {
-        int dig = 3;
-        int ndig = 0;
-        if (dig <= 0) {
+        int numDigitos = 3;
+        int nDigitos = 0;
+        if (numDigitos <= 0) {
             System.out.println("Ingrese como parámetro, un numero de digitos correcto (mayor que 0): ");
         }
-        for (int i = 1; i <= 99999; i++) {
-            int aux = i;
+        for (int comparaNum = 1; comparaNum <= 99999; comparaNum++) {
+            int aux = comparaNum;
 
             int contador = 0;
 
@@ -27,24 +27,24 @@ public class Examenrefactcod {
                 aux = aux / 10;
                 contador++;
             }
-            ndig = contador;
+            nDigitos = contador;
 
-            if (ndig == dig) {
-                if (i < 4) {
-                    p = true;
+            if (nDigitos == numDigitos) {
+                if (comparaNum < 4) {
+                    esPrimo = true;
                 } else {
-                    if (i % 2 == 0) {
-                        p = false;
+                    if (comparaNum % 2 == 0) {
+                        esPrimo = false;
                     } else {
                         int contador1 = 0;
                         int i1 = 1;
-                        int k = (i - 1) / 2;
+                        int k = (comparaNum - 1) / 2;
                         if (k % 2 == 0) {
                             k--;
                         }
 
                         while (i1 <= k) {
-                            if (i % i1 == 0) {
+                            if (comparaNum % i1 == 0) {
                                 contador1++;
                             }
                             i1 += 2;
@@ -54,13 +54,13 @@ public class Examenrefactcod {
                         }
 
                         if (contador1 == 1) {
-                            p = true;
+                            esPrimo = true;
                         }
                     }
                 }
 
-                if (p == true) {
-                    System.out.println(i);
+                if (esPrimo == true) {
+                    System.out.println(comparaNum);
                 }
             }
         }
